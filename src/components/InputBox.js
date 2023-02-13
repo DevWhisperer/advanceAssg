@@ -1,16 +1,13 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   dispatchDeleteTask,
   dispatchDoneTask,
 } from "../redux/modules/listUpdate";
 
-const InputBox = ({ item, todoList, setTodoList }) => {
+const InputBox = ({ item }) => {
   const dispatch = useDispatch();
-  const list = useSelector((state) => {
-    return state.listUpdate;
-  });
   const navigate = useNavigate();
   const deleteTask = (id) => {
     dispatch(dispatchDeleteTask(id));

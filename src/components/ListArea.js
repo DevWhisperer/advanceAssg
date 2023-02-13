@@ -15,15 +15,13 @@ const ListArea = () => {
           return <InputBox key={item.id} item={item} />;
         })}
       <p>------------------------------</p>
-      {list
-        .filter((item) => item.isDone == true)
-        .map((item) => {
-          return (
-            <DoneTask>
-              <InputBox key={item.id} item={item} />
-            </DoneTask>
-          );
-        })}
+      <DoneTask>
+        {list
+          .filter((item) => item.isDone == true)
+          .map((item) => {
+            return <InputBox key={item.id} item={item} />;
+          })}
+      </DoneTask>
     </div>
   );
 };

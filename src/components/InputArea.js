@@ -1,8 +1,13 @@
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { dispatchAddList } from "../redux/modules/listUpdate";
 
-const InputArea = ({ todoList }) => {
+const InputArea = () => {
   const dispatch = useDispatch();
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const titleRef = useRef();
+  const descRef = useRef();
   const guidGenerator = () => {
     var S4 = function () {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -22,24 +27,54 @@ const InputArea = ({ todoList }) => {
       S4()
     );
   };
+  const isValidate = (target) => {
+    if (target) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const addList = (event) => {
     event.preventDefault();
+    if (!isValidate(title)) {
+      alert("제목을 입력하세요");
+      titleRef.current.focus();
+      return;
+    } else if (!isValidate(desc)) {
+      alert("내용을 입력하세요");
+      descRef.current.focus();
+      return;
+    }
     let newTask = {
       id: guidGenerator(),
-      title: event.target.title.value,
-      desc: event.target.desc.value,
+      title,
+      desc,
       isDone: false,
     };
     dispatch(dispatchAddList(newTask));
-    event.target.title.value = "";
-    event.target.desc.value = "";
+    setTitle("");
+    setDesc("");
   };
   return (
     <form onSubmit={addList}>
       제목
-      <input type="text" name="title" />
+      <input
+        type="text"
+        ref={titleRef}
+        value={title}
+        onChange={(e) => {
+          setTitle(e.target.value);
+        }}
+      />
       내용
-      <input type="text" name="desc" />
+      <input
+        type="text"
+        ref={descRef}
+        value={desc}
+        onChange={(e) => {
+          setDesc(e.target.value);
+        }}
+      />
       <input type="submit" />
     </form>
   );
