@@ -10,6 +10,7 @@ const SelectArea = () => {
   };
   const [select1, setSelect1] = useState("리액트");
   const [select2, setSelect2] = useState("리액트");
+  const itemName = ["리액트", "자바", "자바스크립트", "뷰", "노드제이에스"];
   const selectChange = (e, selectNum) => {
     const optionName = e.target.textContent;
     switch (selectNum) {
@@ -31,21 +32,13 @@ const SelectArea = () => {
             {select1}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={(e) => selectChange(e, 1)}>
-              리액트
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => selectChange(e, 1)}>
-              자바
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => selectChange(e, 1)}>
-              자바스크립트
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => selectChange(e, 1)}>
-              뷰
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => selectChange(e, 1)}>
-              노드제이에스
-            </Dropdown.Item>
+            {itemName.map((name, i) => {
+              return (
+                <Dropdown.Item key={i} onClick={(e) => selectChange(e, 1)}>
+                  {name}
+                </Dropdown.Item>
+              );
+            })}
           </Dropdown.Menu>
         </Dropdown>
       </SelectStyle>
@@ -55,21 +48,13 @@ const SelectArea = () => {
             {select2}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={(e) => selectChange(e, 2)}>
-              리액트
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => selectChange(e, 2)}>
-              자바
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => selectChange(e, 2)}>
-              자바스크립트
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => selectChange(e, 2)}>
-              뷰
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => selectChange(e, 2)}>
-              노드제이에스
-            </Dropdown.Item>
+            {itemName.map((name, i) => {
+              return (
+                <Dropdown.Item key={i} onClick={(e) => selectChange(e, 2)}>
+                  {name}
+                </Dropdown.Item>
+              );
+            })}
           </Dropdown.Menu>
         </Dropdown>
       </SelectStyle>
