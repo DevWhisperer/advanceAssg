@@ -6,7 +6,7 @@ import dropdown_logo from "./dropdown_logo.jpg";
 import List from "./List";
 
 const SelectComp = ({ overflow }) => {
-  const [listDown, setListDown] = useState(true);
+  const [listDown, setListDown] = useState(false);
   const [selectOne, setSelectOne] = useState("리액트");
   const dropdownToggle = () => {
     setListDown(!listDown);
