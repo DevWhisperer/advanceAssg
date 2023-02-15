@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dispatchAddList } from "../redux/modules/listUpdate";
 
 const InputArea = () => {
@@ -8,25 +8,9 @@ const InputArea = () => {
   const [desc, setDesc] = useState("");
   const titleRef = useRef();
   const descRef = useRef();
-  const guidGenerator = () => {
-    var S4 = function () {
-      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    };
-    return (
-      S4() +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      S4() +
-      S4()
-    );
-  };
+  const newId = useSelector((state) => {
+    return state.listUpdate[state.listUpdate.length - 1].id + 1;
+  });
   const isValidate = (target) => {
     if (target) {
       return true;
@@ -46,7 +30,7 @@ const InputArea = () => {
       return;
     }
     let newTask = {
-      id: guidGenerator(),
+      id: newId,
       title,
       desc,
       isDone: false,

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ModalBackground from "../../style/modal/ModalBackground";
 import ModalButton1 from "../../style/modal/ModalButton1";
 import ModalButton2 from "../../style/modal/ModalButton2";

@@ -7,7 +7,9 @@ const ModalPageStyle = styled.div`
   top: 20%;
   left: 30%;
   width: 40%;
-  background: white;
+  background: ${({ isDarkMode }) => {
+    return isDarkMode ? "black" : "white";
+  }};
   padding: 1rem;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
